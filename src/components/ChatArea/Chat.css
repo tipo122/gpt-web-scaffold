@@ -1,0 +1,21 @@
+.chat-body-div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: start;
+  justify-content: space-around;
+  height: 50rem;
+}
+
+.chat-textarea-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: nomal;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.chat-button {
+  margin: 0.7rem 0 0 1rem;
+}
