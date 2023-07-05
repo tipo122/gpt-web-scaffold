@@ -8,16 +8,20 @@ interface ChatProps {
   children?: React.ReactElement;
 }
 const { TextArea } = Input;
+// const functions = getFunctions();
 
 const Chat = (props: ChatProps) => {
+  // const [messages, setMessages] = useState<any>([]);
   const { messages, submitPrompt } = useChatCompletion({
     model: 'gpt-3.5-turbo',
     apiKey: process.env.REACT_APP_OPENAI_API_KEY ? process.env.REACT_APP_OPENAI_API_KEY : '',
     temperature: 0.9,
   });
   const [prompt, setPrompt] = useState<string>('');
-  const handleClick = () => {
-    submitPrompt([{ content: prompt, role: 'user' }]);
+  const handleClick = async () => {
+    // submitPrompt([{ content: prompt, role: 'user' }]);
+    await submitPrompt([{ content: prompt, role: 'user' }]);
+    // setMessages([result]);
     setPrompt('');
   };
 
