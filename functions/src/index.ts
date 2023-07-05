@@ -12,7 +12,7 @@ import { Configuration, OpenAIApi } from 'openai';
 
 // import * as logger from 'firebase-functions/logger';
 const configuration = new Configuration({
-  apiKey: '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',
+  apiKey: '',
 });
 
 const openai = new OpenAIApi(configuration);
