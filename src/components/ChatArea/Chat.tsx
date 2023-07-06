@@ -20,7 +20,7 @@ const Chat = (props: ChatProps) => {
   const [prompt, setPrompt] = useState<string>('');
   const handleClick = async () => {
     // submitPrompt([{ content: prompt, role: 'user' }]);
-    await submitPrompt([{ content: prompt, role: 'user' }]);
+    await submitPrompt({ content: prompt, role: 'user' });
     // setMessages([result]);
     setPrompt('');
   };

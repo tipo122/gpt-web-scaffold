@@ -19,19 +19,24 @@ export const useChatCompletion = ({ model, apiKey, temperature }: UseChatComplet
 
   // const openai = new OpenAIApi(configuration);
 
-  const submitPrompt = async (messages: ChatCompletionRequestMessage[]) => {
+  const submitPrompt = async (msg: ChatCompletionRequestMessage) => {
+    msg && setMessages([...messages, msg]);
+
     const onCreateChatCompletion: (
       data: any
     ) => Promise<{ data: { choices: [{ message: ChatCompletionRequestMessage }] } }> =
       httpsCallable(functions, 'oncreatechatcompletion');
+    try {
+      const res = await onCreateChatCompletion({
+        model: model,
+        messages: [msg],
+        temperature: temperature,
+      });
 
-    const res = await onCreateChatCompletion({
-      model: model,
-      messages: messages,
-      temperature: temperature,
-    });
-
-    res.data.choices[0].message && setMessages([...messages, res.data.choices[0].message]);
+      res.data.choices[0].message && setMessages([...messages, msg, res.data.choices[0].message]);
+    } catch (e) {
+      setMessages([...messages, { content: 'エラーが発生しました', role: 'system' }]);
+    }
   };
 
   return { messages, submitPrompt };

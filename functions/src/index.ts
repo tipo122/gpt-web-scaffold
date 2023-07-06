@@ -9,10 +9,12 @@
 
 import { onRequest } from 'firebase-functions/v2/https';
 import { Configuration, OpenAIApi } from 'openai';
-
+import { defineString } from 'firebase-functions/params';
 // import * as logger from 'firebase-functions/logger';
+
+const openAIAPIKey = defineString('REACT_APP_OPENAI_API_KEY');
 const configuration = new Configuration({
-  apiKey: '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',
+  apiKey: openAIAPIKey.value(),
 });
 
 const openai = new OpenAIApi(configuration);
